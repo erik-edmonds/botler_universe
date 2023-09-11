@@ -46,7 +46,7 @@ controls = [
             dbc.Select(
                 id="select-style",
                 options=[{"label": s.capitalize(), "value": s} for s in STYLES],
-                value=STYLES[1],
+                value=STYLES[0],
             ),
         ]
     ),
@@ -56,7 +56,7 @@ controls = [
             dbc.RadioItems(
                 id="select-dataset",
                 options=[{"label": x, "value": x} for x in DATASETS],
-                value="nuScenes",
+                value="kitti",
             ),
         ]
     ),
@@ -76,6 +76,13 @@ controls = [
         [dbc.Label("About this app"), html.Br(), dbc.Button("More Info", id="btn-info")]
     ),
 ]
+
+compatibility_alert = dbc.Alert(
+    "This app works best in Chrome and Firefox.",
+    color="info",
+    is_open=True,
+    dismissable=True,
+)
 
 info_collapse = dbc.Collapse(
     [
@@ -107,6 +114,7 @@ app.layout = dbc.Container(
                         dbc.Card(controls, body=True),
                         info_collapse,
                         html.Br(),
+                        compatibility_alert,
                     ],
                     md=3,
                 ),
